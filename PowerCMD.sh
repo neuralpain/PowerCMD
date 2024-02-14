@@ -5,14 +5,17 @@
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-version=$(<VERSION) # edit script version in ./VERSION
-name=script # change name of script
-script_title="Script Title" # terminal window title
+# edit script version in ./VERSION
+version=$(<VERSION)
+# change name of script
+name=script
+# terminal window title
+script_title="Script Title"
 with_admin=false
 return=PowerCMD:
 v="0.1.0"
 
-# directories
+# location of directories
 src=./src
 res=$src/res
 functions=$src/functions
@@ -31,7 +34,7 @@ additional_files=(
   "file_3.txt"
 )
 
-# propagate a list of your PowerShell functions here
+# declare a list of your PowerShell functions here
 powershell_functions=(
   "$functions/Function-One.ps1"
   "$functions/Function-Two.ps1"
@@ -57,7 +60,7 @@ add_pwsh() {
     echo ":: if error, we do not have admin." >> $cmd_cache
     echo "if %ERRORLEVEL% NEQ 0 (" >> $cmd_cache
     echo "  cls & echo." >> $cmd_cache
-    echo "  echo This script requires administrative priviledges." >> $cmd_cache
+    echo "  echo This script requires administrative privileges." >> $cmd_cache
     echo "  echo Attempting to elevate..." >> $cmd_cache
     echo "  goto UAC_Prompt" >> $cmd_cache
     echo ") else ( goto :init )" >> $cmd_cache
@@ -127,7 +130,8 @@ bundle_test() {
   buildfile="$buildfile-$version-beta-Build.$build"
   # this one for the script's head comment
   version="$version-beta [Build $build]"
-  [[ ! -d "./build" ]] && mkdir build; bundle
+  [[ ! -d "./build" ]] && mkdir build
+  bundle
 }
 
 compress() {
