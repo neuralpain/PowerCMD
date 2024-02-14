@@ -1,12 +1,15 @@
 # PowerCMD
 
-Batch is limited and lacks many of the programming paradigms found in modern languages, but it's user-friendly for the average user to run. There are also some straightforward advantages to using Batch over PowerShell.
+Batch is limited and lacks many of the programming paradigms found in modern languages, but it's user-friendly for the wider demographic of users to execute. There are also some straightforward advantages to using Batch over PowerShell, which is, on the other hand, a more complex scripting language designed with the paradigms of modern programming languages.
 
-PowerShell, on the other hand, is a more complex scripting language designed with the paradigms of modern programming languages. However, it's not immediately obvious how to run scripts with PowerShell for the broad demographic of Windows users. Therefore, a bundler was created to seamlessly integrate PowerShell within Batch.
+That being said, it's not immediately obvious to the broad demographic of Windows users how you are supposed to run PowerShell scripts (it sure wasn't for me, the first time I wanted to run a PowerShell script) and I hate that I have to open up a terminal (and possibly jump through some safety hoops) just to run it as opposed to the simple *double-click* of a Batch script. Therefore, I created a bundler to seamlessly integrate PowerShell within Batch to take advantage of some of its benefits.
 
-Essentially, this approach involves using a minimal amount of Batch code to execute your PowerShell script, and it even allows for the granting of admin privileges.
+Essentially, this approach involves using a minimal amount of Batch code to execute your PowerShell script, and additionally, it allows for the granting of admin privileges.
 
-PowerCMD is a fork of the bundler developed for my [qbactivator](https://github.com/neuralpain/qbactivator) project, prepared as a template for developers to use in their own PowerShell scripting projects.
+> [!NOTE]  
+> PowerCMD is a fork of the bundler developed for my [qbactivator](https://github.com/neuralpain/qbactivator) project, prepared as a template which other developers can to use for their own PowerShell scripting projects. The [current implementation](https://github.com/neuralpain/qbactivator/blob/v0.21.1/compile) of the bundler in the *qbactivator* project is outdated and will be replaced with this script in a subsequent release.
+> - uses neuralpain / [cmdUAC.cmd](https://gist.github.com/neuralpain/4bcc08065fe79e4597eb65ed707be90d)
+> - uses neuralpain / [PwshBatch.cmd](https://gist.github.com/neuralpain/4ca8a6c9aca4f0a1af2440f474e92d05)
 
 ## How it bundles
 
@@ -18,11 +21,11 @@ Bundling is pretty simple:
 
 Essentially, there are two separate cache files which are then combined into a single script.
 
-For release packages, you will use the `-s` switch and `-s -a` to compress the release. If compression is enabled, then both a `complete_release` and a `lightweight_release` will be created. The `zip` package is required for compression.
+For release packages, you will use the `-s` switch or `-s -a` to archive the release. If archiving is enabled, then both a `complete_release` and a `lightweight_release` will be created. The `zip` package is required for archiving.
 
 > [!NOTE]  
-> - `complete_release` should contain all the files that the script needs to run and function correctly, not integrated with the script itself by ASCII methods i.e. [Compressed2Text](https://github.com/AveYo/Compressed2TXT).
-> - `lightweight_release` should only contain files that the user is unable to download or access on their own.
+> - `complete_release` should contain all the files that the script needs to run and function correctly, not integrated with the script itself by ASCII methods i.e. [Compressed2Text](https://github.com/AveYo/Compressed2TXT)
+> - `lightweight_release` should only contain files that the user is unable to download or access on their own
 
 If you are testing iterations of your script, you can use the `-t` switch to create a test in the `/build` folder. Optionally, you are able to add a note within the file name by typing a description like this: `-t testing bug fix`. Each test is created with a unique build number.
 
@@ -45,7 +48,7 @@ script_title="Script Title"
 ```
 
 > [!IMPORTANT]  
-> The `VERSION` should be updated on every release of your script.
+> The `VERSION` file should be updated on every release of your script.
 
 ### Additional files that the script needs to access
 
