@@ -2,3 +2,6 @@
 cache/
 dist/
 build/
+
+# mac
+.DS_Store

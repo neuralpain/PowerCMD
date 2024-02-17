@@ -29,9 +29,6 @@ For release packages, you will use the `-s` switch or `-s -a` to archive the rel
 
 If you are testing iterations of your script, you can use the `-t` switch to create a test in the `/build` folder. Optionally, you are able to add a note within the file name by typing a description like this: `-t testing bug fix`. Each test is created with a unique build number.
 
-> [!TIP]  
-> For admin privileges, use the `--with-admin` flag after the `-t`, `-s`, or `-s -a` switches. If you want to add a note for your test which has admin privileges enabled, the note must be last: `-t --with-admin testing bug fix`.
-
 ## Configuration
 
 This bundler bundler as a semi-configurable script, as it requires input such as the script name, file locations and whatnot. You should only need to change the below lines of code for the most basic of scripts, but feel free to modify it (and the basic folder structure) to suit your needs.
@@ -119,8 +116,8 @@ bundle() {
 bundle() {
   ...
   # -- add batch code | this is optional -- #
-  # cat $src/main.cmd >> $cmd_cache  # optional
-  # echo >> $cmd_cache               # optional
+  # cat $src/main.cmd >> $cmd_cache
+  # echo >> $cmd_cache
   # -- end batch code -- #
   ...
 }
@@ -129,9 +126,15 @@ bundle() {
 ### Specify files to exclude from (or include in with `-i`) the `lightweight_release`
 
 ```Shell
-# files to exclude in lightweight release
-# `*.zip` is mandatory, else it will include the normal release as well
-zip -q $lightweight_release * -x file_2.txt file_3.txt *.zip || [...]
+# files to exclude in *.min.zip
+exclude_files=(
+  "file_1.txt"
+  "file_3.txt"
+)
+
+[...]
+
+zip -q $lightweight_release * -x ${exclude_files[@]} *.zip || [...]
 ```
 
 > [!TIP]  
