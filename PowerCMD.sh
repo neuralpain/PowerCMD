@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# PowerCMD.sh, Version 0.2.0
+# PowerCMD.sh, Version 0.2.1
 # Copyright (c) 2024, neuralpain 
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-v="0.2.0"
+v="0.2.1"
 return=PowerCMD:
 
 # [ SCRIPT INFO ]
@@ -34,22 +34,25 @@ pwsh_cache=./cache/pwsh.build.ps1
 # [ FILES LIST ]
 # add additional files here
 additional_files=(
-  "file_1.txt"
-  "file_2.txt"
-  "file_3.txt"
+  # "file_1.txt"
+  # "file_2.txt"
+  # "file_3.txt"
+  # [...]
 )
 # files to exclude in *.min.zip
 exclude_files=(
-  "file_1.txt"
-  "file_3.txt"
+  # "file_1.txt"
+  # "file_3.txt"
+  # [...]
 )
 # declare a list of your PowerShell functions here
 powershell_functions=(
-  "$functions/Function-One.ps1"
-  "$functions/Function-Two.ps1"
-  "$functions/Function-Three.ps1"
-  # you should not need to remove main unless
-  # the main PowerShell file is renamed
+  # "$functions/Function-One.ps1"
+  # "$functions/Function-Two.ps1"
+  # "$functions/Function-Three.ps1"
+  # "$functions/[...].ps1"
+  # you should not need to remove Main.ps1
+  # unless the main PowerShell file is renamed
   "$src/Main.ps1"
 )
 
@@ -117,16 +120,14 @@ bundle() {
   # echo >> $cmd_cache
   # -- end batch code -- #
   echo "# ---------- PowerShell Script ---------- #>" >> $cmd_cache
-  echo >> $cmd_cache
 
   # Loop through the powershell_functions
   for function in "${powershell_functions[@]}"; do
-    cat $function >> $pwsh_cache
     # add a break between files:
     #   142: end of one file 
-    # [break]
+    echo >> $pwsh_cache # [break]
     #     1: start of next file
-    echo >> $pwsh_cache
+    cat $function >> $pwsh_cache
   done
 
   # final bundle
