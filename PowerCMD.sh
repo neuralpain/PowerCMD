@@ -176,7 +176,6 @@ printusage() {
   echo "Usage: PowerCMD [OPTION...]"
   echo -e "A bundler to integrate PowerShell with CMD\n"
   echo "  -s, --release      Build for stable release"
-  echo "      --with-admin   Include admin permission request"
   echo "  -a, --archive      Archive stable release package"
   echo "  -t, --test [note]  Build unit tests"
   echo "  -C, --clear-all    Delete temporary files and folders"
