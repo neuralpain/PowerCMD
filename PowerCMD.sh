@@ -1,20 +1,27 @@
 #!/bin/bash
 
-# PowerCMD.sh, Version 0.2.1
+# PowerCMD.sh, Version 0.2.2
 # Copyright (c) 2024, neuralpain 
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
 v="0.2.1"
-return=PowerCMD:
+return="PowerCMD:"
 
 # [ SCRIPT INFO ]
 # edit script version in ./VERSION
 version=$(<VERSION)
 # change name of script
-name=script
+name="script"
 # terminal window title
 script_title="Script Title"
+# license information
+license_year="1937"
+license_owner="Alan Turing"
+# link to software website or oss repo
+project_url="https://git.kernel.org/pub/scm/"
+# basic description of what this script does
+script_description="A script that does stuff"
 # change to "true" if your script requires admin
 with_admin=false
 
@@ -107,9 +114,9 @@ bundle() {
   echo ":: $name.cmd, Version $version" >> $cmd_cache
   # add the copyright information, link to your project repository and
   # description of the script, or remove it entirely, whichever you choose
-  echo ":: Copyright (c) 1937, Alan Turing" >> $cmd_cache
-  echo ":: https://git.kernel.org/pub/scm/" >> $cmd_cache
-  echo ":: A script that does stuff" >> $cmd_cache
+  echo ":: Copyright (c) $license_year, $license_owner" >> $cmd_cache
+  echo ":: $project_url" >> $cmd_cache
+  echo ":: $script_description" >> $cmd_cache
   echo >> $cmd_cache
   echo "@echo off" >> $cmd_cache
   echo "@title $script_title v$version" >> $cmd_cache
