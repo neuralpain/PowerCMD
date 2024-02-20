@@ -5,7 +5,7 @@
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-v="0.2.1"
+v="0.2.2"
 return="PowerCMD:"
 
 # [ SCRIPT INFO ]
