@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# PowerCMD.sh, Version 0.2.3
-# Copyright (c) 2024, neuralpain 
+# PowerCMD.sh, Version 0.2.4
+# Copyright (c) 2024, neuralpain
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-v="0.2.3"
+v="0.2.4"
 return="PowerCMD:"
+
+# --- START CONFIGURATION --- #
 
 # [ SCRIPT INFO ]
 # edit script version in ./VERSION
