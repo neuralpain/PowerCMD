@@ -1,13 +1,15 @@
 # PowerCMD
 
+## What is this thing?
+
 Batch lacks many of the programming paradigms found in modern languages, but it's user-friendly for the wider demographic of users to execute. There are also some straightforward advantages to using Batch over PowerShell, which is, on the other hand, a more complex scripting language designed with the paradigms of modern programming languages.
 
 That being said, it's not immediately obvious to the broad demographic of Windows users how you are supposed to run PowerShell scripts (it sure wasn't for me, the first time I wanted to run a PowerShell script) and having to open up a terminal (and possibly jump through some safety hoops) just to run it as opposed to the simple *double-click* of a Batch script is a bit tedious. Therefore, I created a bundler to quickly integrate PowerShell within Batch to take advantage of some of its benefits.
 
-Essentially, this approach involves using a minimal amount of Batch code to execute your PowerShell script, and additionally, it allows for the granting of admin privileges.
+TLDR; Essentially, this approach involves using a minimal amount of Batch code to execute your PowerShell script, and additionally, it allows for requesting admin privileges.
 
 > [!NOTE]  
-> PowerCMD is a fork of the bundler developed for my [qbactivator](https://github.com/neuralpain/qbactivator) project, prepared as a template which other developers can to use for their own PowerShell scripting projects. The [current implementation](https://github.com/neuralpain/qbactivator/blob/v0.21.1/compile) of the bundler in the *qbactivator* project is outdated and will be replaced with this script in a subsequent release.
+> PowerCMD is a fork of the bundler developed for my [qbactivator](https://github.com/neuralpain/qbactivator) project, prepared as a template which other developers can to use for their own PowerShell scripting projects. The [previous implementation](https://github.com/neuralpain/qbactivator/blob/v0.21.1/compile) of the bundler in the *qbactivator* project was replaced with this script.
 > - uses neuralpain / [cmdUAC.cmd](https://gist.github.com/neuralpain/4bcc08065fe79e4597eb65ed707be90d)
 > - uses neuralpain / [PwshBatch.cmd](https://gist.github.com/neuralpain/4ca8a6c9aca4f0a1af2440f474e92d05)
 
@@ -23,7 +25,7 @@ Essentially, this approach involves using a minimal amount of Batch code to exec
 
 Bundling is pretty simple:
 
-  1. Writes the batch code necessary to run the PowerShell code (with admin if required) into the `cmd_cache.cmd`
+  1. Writes the batch code necessary to run the PowerShell code (with admin, if required) into the `cmd_cache.cmd`
   2. Collects all the PowerShell functions and code and writes it into the `pwsh_cache.ps1`
   3. Writes the cache files to a single `script.cmd` in `/dist`
 
@@ -79,28 +81,25 @@ additional_files=(
 ```
 
 > [!IMPORTANT]  
-> Ensure to correctly define the location of the folder containing the additional files here...
-> 
-> ```Shell
-> ...
-> # location of directories
-> src=./src
-> res=$src/res
->     ^^^^^^^^
-> functions=$src/functions
-> ...
-> ```
->
-> ...since it will affect your results here
-> 
-> ```Shell
-> compress() {
-> ...
->   for file in "${additional_files[@]}"; do 
->     cp $res/$file dist
->        ^^^^^^^^^^
-> ...
-> ``` 
+> Ensure to correctly define the location of the folder containing the additional files here so that you don't develop missing folders later down
+
+```Shell
+[...]
+# location of directories
+src=./src
+res=$src/res
+^^^^^^^^
+functions=$src/functions
+[...]
+```
+```Shell
+compress() {
+...
+for file in "${additional_files[@]}"; do 
+cp $res/$file dist
+^^^^^^^^^^
+[...]
+``` 
 
 ### List PowerShell functions
 
