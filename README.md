@@ -116,13 +116,16 @@ powershell_functions=(
 ```
 
 ### Add Batch code to be run after PowerShell execution is complete
+This will only add the batch code if a `main.cmd` file is present in the folder
 
 ```Shell
 bundle() {
   ...
-  # -- add batch code | this is optional -- #
-  cat $src/main.cmd >> $cmd_cache
-  echo >> $cmd_cache
+  # -- add batch code -- #
+  if [[ -f "$src/main.cmd" ]]; then 
+    cat $src/main.cmd >> $cmd_cache
+    echo >> $cmd_cache
+  fi
   # -- end batch code -- #
   ...
 }
