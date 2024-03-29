@@ -2,11 +2,7 @@
 
 ## What is this thing?
 
-Batch lacks many of the programming paradigms found in modern languages, but it's user-friendly for the wider demographic of users to execute. There are also some straightforward advantages to using Batch over PowerShell, which is, on the other hand, a more complex scripting language designed with the paradigms of modern programming languages.
-
-That being said, it's not immediately obvious to the broad demographic of Windows users how you are supposed to run PowerShell scripts (it sure wasn't for me, the first time I wanted to run a PowerShell script) and having to open up a terminal (and possibly jump through some safety hoops) just to run it as opposed to the simple *double-click* of a Batch script is a bit tedious. Therefore, I created a bundler to quickly integrate PowerShell within Batch to take advantage of some of its benefits.
-
-TLDR; Essentially, this approach involves using a minimal amount of Batch code to execute your PowerShell script, and additionally, it allows for requesting admin privileges.
+Essentially, this approach to bundling PowerShell scripts involves using a minimal amount of Batch code to execute your PowerShell script, and additionally, it allows for requesting admin privileges.
 
 > [!NOTE]  
 > PowerCMD is a fork of the bundler developed for my [qbactivator](https://github.com/neuralpain/qbactivator) project, prepared as a template which other developers can to use for their own PowerShell scripting projects. The [previous implementation](https://github.com/neuralpain/qbactivator/blob/v0.21.1/compile) of the bundler in the *qbactivator* project was replaced with this script.
@@ -15,8 +11,7 @@ TLDR; Essentially, this approach involves using a minimal amount of Batch code t
 
 ## Why should you use PowerCMD?
 
-- **Improves efficiency** by allowing you to work with multiple PowerShell files
-- **Improved readability** by splitting up your large script into multiple files to produce smaller, more focused files
+- **Improves efficiency and readability** by splitting up your large script into multiple files to produce smaller, more focused files
 - Optionally enable **archiving** of your script and other related files into a ZIP file for release
 - Optionally include code for **admin permissions** request
 - It's a script that gobbles up code and spits out another script just the way you need it... so why not?
