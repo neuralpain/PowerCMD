@@ -5,10 +5,14 @@
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-v="0.2.5"
+v="0.2.6"
 return="PowerCMD:"
 
 # --- START CONFIGURATION --- #
+
+# [ TERMINAL WINDOW CONFIG ]
+window_width=60
+window_height=25
 
 # [ SCRIPT INFO ]
 # edit script version in ./VERSION
@@ -121,6 +125,7 @@ bundle() {
   echo ":: $script_description" >> $cmd_cache
   echo >> $cmd_cache
   echo "@echo off" >> $cmd_cache
+  echo "@mode $window_width,$window_height" >> $cmd_cache
   echo "@title $script_title v$version" >> $cmd_cache
   add_pwsh
   echo >> $cmd_cache
