@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PowerCMD.sh, Version 0.2.5
+# PowerCMD.sh, Version 0.2.6
 # Copyright (c) 2024, neuralpain
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
