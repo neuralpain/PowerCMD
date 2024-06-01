@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# PowerCMD.sh, Version 0.2.6
+# PowerCMD.sh, Version 0.3.0
 # Copyright (c) 2024, neuralpain
 # https://github.com/neuralpain/PowerCMD
 # A bundler to integrate PowerShell with CMD
 
-v="0.2.6"
+v="0.3.0"
 return="PowerCMD:"
 
 # --- START CONFIGURATION --- #
@@ -36,6 +36,7 @@ with_admin=false
 src=./src
 # other files directory
 res=$src/res
+bin=$src/bin
 # PowerShell functions/module directory
 functions=$src/functions
 # -- auto-generated -- #
@@ -47,14 +48,21 @@ pwsh_cache=./cache/pwsh.build.ps1
 # [ FILES LIST ]
 # add additional files here
 additional_files=(
-  # "file_1.txt"
-  # "file_2.txt"
-  # "file_3.txt"
+  # "[.../]file_1.txt"
+  # "[.../]file_2.txt"
+  # "[.../]file_3.txt"
   # [...]
 )
 # files to exclude in *.min.zip
 exclude_files=(
+  # "[.../]file_1.txt"
+  # "[.../]file_3.txt"
+  # [...]
+)
+# files to cleanup after .zip compression (copy-paste additional files here without the '[.../]' location)
+remove_files=(
   # "file_1.txt"
+  # "file_2.txt"
   # "file_3.txt"
   # [...]
 )
@@ -129,12 +137,14 @@ bundle() {
   echo "@title $script_title v$version" >> $cmd_cache
   add_pwsh
   echo >> $cmd_cache
+  
   # -- add batch code -- #
   if [[ -f "$src/main.cmd" ]]; then 
     cat $src/main.cmd >> $cmd_cache
     echo >> $cmd_cache
   fi
   # -- end batch code -- #
+  
   echo "# ---------- PowerShell Script ---------- #>" >> $cmd_cache
 
   # Loop through the powershell_functions
@@ -181,7 +191,7 @@ compress() {
 
   # cleanup temporary files copied to /dist
   rm ./LICENSE ./VERSION
-  for file in "${additional_files[@]}"; do
+  for file in "${remove_files[@]}"; do
     rm $file
   done
 
